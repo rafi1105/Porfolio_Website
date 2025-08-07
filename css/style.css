@@ -524,11 +524,14 @@ body.loading .footer {
 }
 
 .hero-image .lottie-animation {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     z-index: 10;
     position: relative;
     top: 0;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .hero-image .profile-image {
