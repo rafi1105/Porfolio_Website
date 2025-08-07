@@ -1,5 +1,26 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    // Simple Page Loader
+    const pageLoader = document.getElementById('pageLoader');
+    const body = document.body;
+    
+    // Hide loader after page loads
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            if (pageLoader) {
+                pageLoader.classList.add('fade-out');
+                body.classList.remove('loading');
+                
+                // Remove loader from DOM after animation
+                setTimeout(() => {
+                    if (pageLoader && pageLoader.parentNode) {
+                        pageLoader.parentNode.removeChild(pageLoader);
+                    }
+                }, 500);
+            }
+        }, 1000); // Show loader for at least 1 second
+    });
+
     // Navigation smooth scrolling
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
@@ -166,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Typing animation for hero text
-    function typeWriter(element, text, speed = 100) {
+    function typeWriter(element, text, speed = 100, callback) {
         let i = 0;
         element.innerHTML = '';
         
@@ -175,19 +196,64 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.innerHTML += text.charAt(i);
                 i++;
                 setTimeout(type, speed);
+            } else if (callback) {
+                callback();
             }
         }
         type();
     }
 
-    // Start typing animation for hero subtitle
-    const heroSubtitle = document.querySelector('.hero-subtitle');
-    if (heroSubtitle) {
-        const originalText = heroSubtitle.textContent;
-        setTimeout(() => {
-            typeWriter(heroSubtitle, originalText, 80);
-        }, 1000);
+    // Multiple texts for typing animation
+    const typingTexts = [
+        "Full Stack Developer",
+        "Machine Learning Enthusiast", 
+        "AI & LLM Explorer"
+    ];
+    
+    let textIndex = 0;
+    
+    function startTypingAnimation() {
+        const typingTextElement = document.getElementById('typingText');
+        const typingCursor = document.getElementById('typingCursor');
+        
+        if (!typingTextElement) return;
+        
+        function typeCurrentText() {
+            const currentText = typingTexts[textIndex];
+            
+            // Type the current text
+            typeWriter(typingTextElement, currentText, 100, () => {
+                // Wait for 2 seconds, then erase
+                setTimeout(() => {
+                    eraseText();
+                }, 2000);
+            });
+        }
+        
+        function eraseText() {
+            const currentText = typingTextElement.innerHTML;
+            let i = currentText.length;
+            
+            function erase() {
+                if (i > 0) {
+                    typingTextElement.innerHTML = currentText.substring(0, i - 1);
+                    i--;
+                    setTimeout(erase, 50);
+                } else {
+                    // Move to next text
+                    textIndex = (textIndex + 1) % typingTexts.length;
+                    setTimeout(typeCurrentText, 500);
+                }
+            }
+            erase();
+        }
+        
+        // Start the animation
+        setTimeout(typeCurrentText, 1000);
     }
+
+    // Start typing animation for hero subtitle
+    startTypingAnimation();
 
     // Enhanced parallax effects for multiple sections
     window.addEventListener('scroll', function() {

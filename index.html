@@ -11,7 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
 </head>
-<body>
+<body class="loading">
+    <!-- Simple Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -47,7 +52,10 @@
                     <span class="greeting">Hi, I'm</span>
                     <span class="name">Rafi Kabir</span>
                 </h1>
-                <p class="hero-subtitle">Full Stack Developer | Machine Learning Enthusiast | AI & LLM Explorer</p>
+                <p class="hero-subtitle">
+                    <span class="typing-text" id="typingText"></span>
+                    <span class="typing-cursor" id="typingCursor">|</span>
+                </p>
                 <p class="hero-description">
                     Welcome to my portfolio! I'm a passionate full-stack developer and machine learning enthusiast who loves creating 
                     innovative solutions and contributing to the tech community. I've been part of the GitHub community since August 2022, 
