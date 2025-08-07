@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }, 500);
             }
-        }, 1000); // Show loader for at least 1 second
+        }, 700); // Show loader for at least 1 second
     });
 
     // Navigation smooth scrolling
