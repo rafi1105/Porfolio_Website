@@ -116,11 +116,11 @@ body {
 
 /* Dark theme loader colors */
 [data-theme="dark"] .loader {
-    border-color: #818cf8 #0000;
+    border-color: #0077ff #00a2fffd;
 }
 
 [data-theme="dark"] .loader::before {
-    border-color: #fbbf24 #0000;
+    border-color: #fbbf24 #0389e2f8;
 }
 
 /* Hide main content during loading */
