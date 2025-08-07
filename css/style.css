@@ -223,11 +223,11 @@ body {
 }
 
 .hero-content {
-    max-width: 1200px;
+    max-width: 1350px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 6rem;
     align-items: center;
     position: relative;
     z-index: 2;
@@ -341,33 +341,134 @@ body {
 .hero-image {
     display: flex;
     justify-content: center;
+    align-items: center;
     animation: slideInRight 1s ease-out;
+    position: relative;
+    height: 600px;
 }
 
-.profile-card {
+.profile-container {
     position: relative;
-    width: 300px;
-    height: 300px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
+    width: 600px;
+    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: float 6s ease-in-out infinite;
+}
+
+.orbital-ring {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border: 2px dashed rgba(91, 55, 235, 0.4);
+    border-radius: 50%;
+    animation: orbitRotate 30s linear infinite;
+    z-index: 3;
+}
+
+.tech-icon-orbital {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #5b37eb, #4a4ae2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+    box-shadow: 0 0 20px rgba(91, 55, 235, 0.6);
+    animation: counterRotate 30s linear infinite;
+    transition: all 0.3s ease;
+}
+
+.tech-icon-orbital:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 30px rgba(91, 55, 235, 0.8);
+}
+
+.aws {
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.react {
+    top: 50%;
+    right: -30px;
+    transform: translateY(-50%);
+}
+
+.node {
+    bottom: 60px;
+    right: 60px;
+}
+
+.python {
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.database {
+    bottom: 60px;
+    left: 60px;
+}
+
+.js {
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+}
+
+.profile-img-container {
+    position: relative;
+    z-index: 4;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #5b37eb;
+    box-shadow: 0 0 40px rgba(91, 55, 235, 0.8);
+    animation: profileFloat 6s ease-in-out infinite;
 }
 
 .profile-img {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile-glow {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: conic-gradient(
+        from 0deg,
+        #5b37eb,
+        #4a4ae2,
+        #6c5ce7,
+        #5b37eb
+    );
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: -1;
+    animation: glowRotate 4s linear infinite;
+}
+
+.animation-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.animation-background dotlottie-wc {
+    filter: hue-rotate(240deg) saturate(0.7);
 }
 
 .img-placeholder {
@@ -1024,6 +1125,42 @@ section {
     }
 }
 
+@keyframes orbitRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes counterRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes profileFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes glowRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0) translateX(-50%);
@@ -1203,7 +1340,8 @@ section {
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 2rem;
+        gap: 5rem;
+       
     }
 
     .hero-title {
@@ -1242,6 +1380,32 @@ section {
     .achievement-list {
         grid-template-columns: 1fr;
     }
+
+    .profile-container {
+        width: 400px;
+        height: 400px;
+    }
+
+    .orbital-ring {
+        width: 350px;
+        height: 350px;
+    }
+
+    .profile-img-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .tech-icon-orbital {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    .animation-background dotlottie-wc {
+        width: 400px !important;
+        height: 400px !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1265,14 +1429,39 @@ section {
         font-size: 2rem;
     }
 
-    .profile-card {
+    .profile-container {
+        width: 300px;
+        height: 300px;
+    }
+
+    .orbital-ring {
         width: 250px;
         height: 250px;
     }
 
-    .floating-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+    .profile-img-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .tech-icon-orbital {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .aws, .python {
+        top: -18px;
+        bottom: -18px;
+    }
+
+    .react, .js {
+        right: -18px;
+        left: -18px;
+    }
+
+    .animation-background dotlottie-wc {
+        width: 300px !important;
+        height: 300px !important;
     }
 }
