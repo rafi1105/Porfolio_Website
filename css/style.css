@@ -206,7 +206,9 @@ body {
     display: flex;
     align-items: center;
     padding: 100px 20px 50px;
-    background: var(--gradient-primary);
+    background: linear-gradient(-45deg, #01d0ff, #dbdbdb, #cdcdcdb0, #2ac3ff);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
     position: relative;
     overflow: hidden;
 }
@@ -234,13 +236,14 @@ body {
 }
 
 .hero-text {
-    color: white;
+    color: rgb(1, 1, 1);
     animation: slideInLeft 1s ease-out;
 }
 
 .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
+    
     margin-bottom: 1rem;
     line-height: 1.2;
 }
@@ -254,7 +257,11 @@ body {
 
 .name {
     display: block;
-    background: linear-gradient(45deg, #fff, #f0f0f0);
+    font-size: 4rem;
+    font-weight: 700;
+    background: linear-gradient(-45deg, #003cff, #2ac3ff, #04eaff, #021e4e);
+    background-size: 300% 300%;
+    animation: gradient 8s ease infinite, textPulse 2s infinite alternate;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -747,7 +754,20 @@ section {
 [data-theme="dark"] .certifications {
     background: var(--bg-secondary);
 }
-
+[data-theme="dark"] .name {
+    display: block;
+    font-size: 4rem;
+    font-weight: 700;
+    background: linear-gradient(-45deg, #004cff, #ffffff, #0c9eff, #ffffff);
+    background-size: 300% 300%;
+    animation: gradient 8s ease infinite, textPulse 2s infinite alternate;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+[data-theme="dark"] .hero-text {
+    color: var(--text-primary);
+}
 .certifications::before {
     content: '';
     position: absolute;
@@ -1085,6 +1105,18 @@ section {
 }
 
 /* Enhanced Animations */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -1252,7 +1284,9 @@ section {
 }
 
 [data-theme="dark"] .hero {
-    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+    background: linear-gradient(-45deg, #23019e, #000000, #000000, #028bf3cb);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 }
 
 [data-theme="dark"] .hero::before {
