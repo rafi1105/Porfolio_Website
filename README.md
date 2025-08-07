@@ -1,4 +1,4 @@
-# Profolio_Websit
+# Profolio_Website
 Personal Profolio Site
 
  ## ⏩ Installed
